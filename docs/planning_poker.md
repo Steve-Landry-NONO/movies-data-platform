@@ -1,10 +1,10 @@
 # Planning Poker
 
 ## 1) Participants
-- <Toi>
-- Theophane
-- Linda
-- Radia
+- Steve KOUOKAM
+- Theophane KEGNI
+- Linda MAKAMTA
+- Radia GHILAS
 
 ## 2) Echelle utilisee
 Fibonacci : 1, 2, 3, 5, 8, 13
@@ -26,7 +26,7 @@ Fibonacci : 1, 2, 3, 5, 8, 13
 - ...
 
 ## 5) Repartition finale des features
-- <Toi> : F0, F7 consolidation, synthese
+- Steve : F0, F7 consolidation, synthese
 - Theophane : F2, F3
 - Linda : F4, F5
 - Radia : F6, F8
