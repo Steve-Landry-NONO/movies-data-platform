@@ -4,10 +4,13 @@
 
 | Membre | Role | Features | Docs owned |
 |---|---|---|---|
-| <Toi> | Tech Lead | F0, F7 consolidation, synthese | runbook.md, synthese |
+| Steve | Tech Lead | F0, F7 consolidation, synthese | runbook.md, synthese |
 | Theophane | Data Engineer | F2, F3 | data_cleaning.md |
 | Linda | Search Engineer | F4, F5 | data_dictionary.md |
 | Radia | Dataviz & App | F6, F8, demo.gif | demo_script.md |
+
+Le tout reste collaboratif donc il se peut que sur certaines taĉhes il ya du renforcement
+Notamement Linda qui aidera en dataviz et steve sur l'apps par exemple, on verra.
 
 ## Workflow Git (Gitflow simplifie)
 
@@ -31,11 +34,11 @@
 | F1 | Docker stack | Tech Lead | DONE |
 | F2 | Ingestion raw | Theophane | TODO |
 | F3 | Nettoyage pipeline | Theophane | TODO |
-| F4 | Mapping + analyzer | Linda | TODO |
+| F4 | Mapping + analyzer | Linda & steve | TODO |
 | F5 | Requetes DSL (12+) | Linda | TODO |
-| F6 | Dashboard Kibana | Radia | TODO |
-| F7 | Documentation finale | Tech Lead | IN PROGRESS |
-| F8 | Search app | Radia | TODO |
+| F6 | Dashboard Kibana | Radia & Linda| TODO |
+| F7 | Documentation finale | Tech Lead & Theophane | IN PROGRESS |
+| F8 | Search app | Radia steve | TODO |
 
 ## Implication individuelle
 
