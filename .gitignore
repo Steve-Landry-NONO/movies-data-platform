@@ -1,0 +1,26 @@
+# Données (trop lourdes pour Git)
+DATA/*.csv
+DATA/*.zip
+DATA/*.tsv
+
+# Logs Logstash
+logs/*
+!logs/.gitkeep
+
+# Environnements Python (pour search-app)
+search-app/venv/
+search-app/.venv/
+search-app/__pycache__/
+**/__pycache__/
+*.pyc
+
+# Env local
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
