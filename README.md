@@ -2,12 +2,12 @@
 
 Projet ELK d'analyse de donnees cinematographiques (dataset TMDB ~10 000 films).
 
-## Equipe
+## Equipe et rôle respectif
 
-- **<Toi>** - Tech Lead (infra, coordination, synthese)
-- **Theophane** - Data Engineer (pipelines Logstash, nettoyage)
-- **Linda** - Search Engineer (mapping, analyzer, requetes DSL)
-- **Radia** - Dataviz & Search App (Kibana, moteur de recherche)
+- **Steve KOUOKAM** - Tech Lead (infra, coordination, synthese)
+- **Theophane KENGNI** - Data Engineer (pipelines Logstash, nettoyage)
+- **Linda MAKAMTA** - Search Engineer (mapping, analyzer, requetes DSL)
+- **Radia GHILAS** - Dataviz & Search App (Kibana, moteur de recherche)
 
 ## Demarrage rapide
 
