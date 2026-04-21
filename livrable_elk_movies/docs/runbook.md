@@ -41,5 +41,11 @@ Vous devriez obtenir un compte similaire sur les deux (environ 10 000).
 
 ## Étape 5 : Kibana et Tableau de Bord
 Rendez-vous sur [http://localhost:5601](http://localhost:5601).
+
 Créez un Data View ("Stack Management" > "Data Views") pour l'Index Pattern `movies_clean`.
 Utilisez les requêtes du fichier `docs/queries.md` (Dev Tools) et explorez/créez vos visualisations.
+
+1. **Importation** : Allez dans **Stack Management** > **Saved Objects**.
+2. Cliquez sur **Import** et sélectionnez le fichier `docs/dashboard_export.ndjson`.
+3. Cela importera automatiquement le Dashboard, les visualisations et le **Data View**.
+4. Accédez au menu **Dashboard** pour visualiser les analyses pré-configurées.
