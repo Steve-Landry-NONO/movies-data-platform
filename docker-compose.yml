@@ -49,7 +49,9 @@ services:
       elasticsearch:
         condition: service_healthy
     environment:
-      - LS_JAVA_OPTS=-Xms512m -Xmx512m
+      - LS_JAVA_OPTS=-Xms256m -Xmx256m
+    ports:
+      - "9600:9600"
     volumes:
       - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
       - ./logstash/config/pipelines.yml:/usr/share/logstash/config/pipelines.yml:ro
