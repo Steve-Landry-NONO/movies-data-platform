@@ -54,7 +54,7 @@ services:
       - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
       - ./logstash/config/pipelines.yml:/usr/share/logstash/config/pipelines.yml:ro
       - ./DATA:/data:ro
-      - ./logs:/usr/share/logstash/logs
+      - ./logs:/usr/share/logstash/logs:ro
 
 volumes:
   es_data:
