@@ -10,7 +10,7 @@ Après l'ingestion brute dans `movies_raw` (F2), nous avons observé les anomali
 - **Valeurs manquantes** : Certains champs numériques ou de date peuvent être vides, ce qui peut entraîner des erreurs de parsing ou des types incorrects si non gérés explicitement.
 - **Champs superflus** : Logstash ajoute des champs de métadonnées (`type`, `@version`, `host`, `path`, `message`, `tags`) qui ne sont pas pertinents pour l'index `movies_clean`.
 - **Nom de colonne générique** : La colonne `index` du CSV est un identifiant unique qui devrait être renommé pour plus de clarté.
-# - **Genres non structurés** : Si un champ `genres` existait, il serait probablement une chaîne de caractères à séparer en tableau. (Note: Le dataset `movies.csv` actuel ne contient pas de colonne `genres`. Cette règle sera appliquée si un tel champ est introduit à l'avenir.)
+- **Genres non structurés** : Si un champ `genres` existait, il serait probablement une chaîne de caractères à séparer en tableau. (Note: Le dataset `movies.csv` actuel ne contient pas de colonne `genres`. Cette règle sera appliquée si un tel champ est introduit à l'avenir.)
 
 ## Regles de nettoyage appliquees
 
@@ -24,7 +24,7 @@ Les règles de nettoyage suivantes sont appliquées dans `logstash/pipeline/20-c
     - `vote_count` est converti en `integer`.
 - **Normalisation des dates** : Le champ `release_date` est parsé en un format de date standard (`yyyy-MM-dd`) et stocké dans un nouveau champ `release_date_ts` (timestamp). Le champ `release_date` original est ensuite supprimé.
 - **Suppression des champs de métadonnées** : Les champs internes de Logstash (`type`, `@version`, `host`, `path`, `message`, `tags`) sont supprimés pour garder l'index `movies_clean` propre et pertinent.
-# - **Traitement des genres** : (Note: Cette règle sera implémentée si un champ `genres` est ajouté au dataset. L'objectif serait de le splitter en un tableau de chaînes de caractères.)
+- **Traitement des genres** : (Note: Cette règle sera implémentée si un champ `genres` est ajouté au dataset. L'objectif serait de le splitter en un tableau de chaînes de caractères.)
 
 ## Mesure d'impact avant/apres
 
