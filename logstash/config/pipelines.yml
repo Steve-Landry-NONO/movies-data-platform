@@ -1,0 +1,5 @@
+# Declare les 2 pipelines : raw et clean
+- pipeline.id: raw
+  path.config: "/usr/share/logstash/pipeline/10-raw.conf"
+- pipeline.id: clean
+  path.config: "/usr/share/logstash/pipeline/20-clean.conf"
