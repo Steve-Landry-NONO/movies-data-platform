@@ -1,0 +1,166 @@
+### 1. Compter les documents
+GET movies_clean/_count
+
+### 2. Voir le mapping
+GET movies_clean/_mapping
+
+### 3. Voir 5 films
+GET movies_clean/_search
+{
+  "size": 5,
+  "query": {
+    "match_all": {}
+  }
+}
+
+### 4. Afficher seulement les titres
+GET movies_clean/_search
+{
+  "size": 10,
+  "_source": ["title"],
+  "query": {
+    "match_all": {}
+  }
+}
+
+### 5. Recherche par titre
+GET movies_clean/_search
+{
+  "query": {
+    "match": {
+      "title": "Spider"
+    }
+  }
+}
+
+### 6. Recherche dans overview
+GET movies_clean/_search
+{
+  "query": {
+    "match": {
+      "overview": "war"
+    }
+  }
+}
+
+### 7. Filtrer langue anglaise
+GET movies_clean/_search
+{
+  "query": {
+    "term": {
+      "original_language": "en"
+    }
+  }
+}
+
+### 8. Films sortis en 2023
+GET movies_clean/_search
+{
+  "query": {
+    "range": {
+      "release_date_ts": {
+        "gte": "2023-01-01",
+        "lte": "2023-12-31"
+      }
+    }
+  }
+}
+
+### 9. Films bien notés
+GET movies_clean/_search
+{
+  "query": {
+    "range": {
+      "vote_average": {
+        "gte": 8
+      }
+    }
+  }
+}
+
+### 10. Films récents et populaires
+GET movies_clean/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "range": {
+            "release_date_ts": {
+              "gte": "2023-01-01"
+            }
+          }
+        },
+        {
+          "range": {
+            "popularity": {
+              "gte": 10
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+### 11. BOOL 3 — exclure les films japonais
+GET movies_clean/_search
+{
+  "query": {
+    "bool": {
+      "must_not": [
+        { "term": { "original_language": "ja" } }
+      ]
+    }
+  }
+}
+
+### 12. BOOL 4 — recherche multi + filtre
+GET movies_clean/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "multi_match": {
+            "query": "war action",
+            "fields": ["title", "overview"]
+          }
+        }
+      ],
+      "filter": [
+        {
+          "range": {
+            "vote_average": { "gte": 6 }
+          }
+        }
+      ]
+    }
+  }
+}
+
+### 13. BOOL 5 — films très bien notés ET récents
+GET movies_clean/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        { "range": { "vote_average": { "gte": 8 } } },
+        { "range": { "release_date_ts": { "gte": "2015-01-01" } } }
+      ]
+    }
+  }
+}
+
+### 14. BOOL 1 — films en anglais ET bien notés
+GET movies_clean/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        { "term": { "original_language": "en" } },
+        { "range": { "vote_average": { "gte": 7 } } }
+      ]
+    }
+  }
+}
