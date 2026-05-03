@@ -14,6 +14,18 @@ BASE_DIR = Path(__file__).resolve().parent
 templates = Jinja2Templates(directory=str(BASE_DIR / "templates"))
 
 
+def normalize_year(year_value: Optional[str]) -> Optional[int]:
+    if year_value is None:
+        return None
+    year_value = str(year_value).strip()
+    if year_value == "":
+        return None
+    try:
+        return int(year_value)
+    except ValueError:
+        return None
+
+
 def build_es_query(
     q: str = "",
     language: Optional[str] = None,
@@ -111,14 +123,22 @@ def search_movies(
 def home(
     request: Request,
     q: str = Query(default=""),
-    language: Optional[str] = Query(default=None),
-    year: Optional[int] = Query(default=None),
+    language: str = Query(default=""),
+    year: str = Query(default="")
 ):
     error = None
     results = []
 
+    normalized_language = language.strip() or None
+    normalized_year = normalize_year(year)
+
     try:
-        results = search_movies(q=q, language=language, year=year, size=10)
+        results = search_movies(
+            q=q,
+            language=normalized_language,
+            year=normalized_year,
+            size=10
+        )
     except Exception as e:
         error = str(e)
 
@@ -127,8 +147,8 @@ def home(
         name="index.html",
         context={
             "q": q,
-            "language": language or "",
-            "year": year or "",
+            "language": language,
+            "year": year,
             "results": results,
             "error": error
         }
@@ -138,12 +158,20 @@ def home(
 @app.get("/api/search", response_class=JSONResponse)
 def api_search(
     q: str = Query(default=""),
-    language: Optional[str] = Query(default=None),
-    year: Optional[int] = Query(default=None),
+    language: str = Query(default=""),
+    year: str = Query(default=""),
     size: int = Query(default=10, ge=1, le=50)
 ):
+    normalized_language = language.strip() or None
+    normalized_year = normalize_year(year)
+
     try:
-        results = search_movies(q=q, language=language, year=year, size=size)
+        results = search_movies(
+            q=q,
+            language=normalized_language,
+            year=normalized_year,
+            size=size
+        )
         return {"ok": True, "count": len(results), "results": results}
     except Exception as e:
         return JSONResponse(
