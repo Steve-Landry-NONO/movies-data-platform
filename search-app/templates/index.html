@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Movies Search App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+      background: #f7f7f7;
+      color: #222;
+    }
+    h1 {
+      margin-bottom: 8px;
+    }
+    p {
+      color: #555;
+    }
+    form {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr auto;
+      gap: 12px;
+      margin: 24px 0;
+      background: white;
+      padding: 16px;
+      border-radius: 10px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+    }
+    input, button {
+      padding: 10px 12px;
+      font-size: 14px;
+    }
+    button {
+      cursor: pointer;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+    }
+    .meta {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 8px;
+    }
+    .error {
+      background: #ffe5e5;
+      color: #8b0000;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+    .empty {
+      color: #777;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Movies Search App</h1>
+  <p>Recherche full-text sur les films avec filtres simples.</p>
+
+  <form method="get" action="/">
+    <input type="text" name="q" placeholder="Rechercher un film ou un thème..." value="{{ q }}">
+    <input type="text" name="language" placeholder="Langue (ex: en, fr)" value="{{ language }}">
+    <input type="number" name="year" placeholder="Année" value="{{ year }}">
+    <button type="submit">Rechercher</button>
+  </form>
+
+  {% if error %}
+    <div class="error">
+      <strong>Erreur :</strong> {{ error }}
+    </div>
+  {% endif %}
+
+  {% if results %}
+    <p><strong>{{ results|length }}</strong> résultat(s)</p>
+    {% for movie in results %}
+      <div class="card">
+        <h3>{{ movie.title or "Titre inconnu" }}</h3>
+        <div class="meta">
+          Langue: {{ movie.original_language or "N/A" }} |
+          Date: {{ movie.release_date_ts or "N/A" }} |
+          Popularité: {{ movie.popularity or "N/A" }} |
+          Note: {{ movie.vote_average or "N/A" }} |
+          Votes: {{ movie.vote_count or "N/A" }}
+        </div>
+        <div>
+          {{ movie.overview or "Pas de résumé disponible." }}
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <div class="empty">Aucun résultat à afficher pour l’instant.</div>
+  {% endif %}
+</body>
+</html>
